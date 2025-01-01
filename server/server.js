@@ -28,6 +28,14 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("client disconnected");
     });
-})
+});
+
+if(process.env.NODE_ENV == "production") {
+    app.get("*", (req, res) => {
+        app.use(express.static(staticPath));
+        const indexFile = path.join(__dirname, "dist", "index.html");
+        return res.sendFile(indexFile);
+    })
+}
 
 server.listen(port, () => console.log(`server listening on port ${port}`));
