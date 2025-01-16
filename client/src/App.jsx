@@ -2,7 +2,9 @@ import "./App.css";
 import io from "socket.io-client";
 import { useState, useEffect} from "react";
 
-const socket = io.connect("https://socket-io-chat-app-p9dp.onrender.com/")
+const link = process.env.REACT_APP_LINK;
+
+const socket = io.connect(link)
 
 const App = () => {
 

@@ -7,6 +7,7 @@ const app = express();
 
 const port = process.env.PORT || 5000;
 const staticPath = path.resolve(__dirname, ".", "dist");
+const link = process.env.LINK;
 
 // setup middleware
 app.use(express.static(staticPath));
@@ -15,7 +16,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "https://socket-io-chat-app-p9dp.onrender.com/",
+        origin: link,
         methods: ["GET", "POST"]
     }
 });
